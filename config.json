@@ -1,0 +1,47 @@
+{
+  "network": "mainnet",
+  "sun_api": {
+    "base_url": "https://open.sun.io",
+    "api_key_env": "SUN_API_KEY",
+    "timeout_seconds": 15,
+    "max_retries": 3,
+    "requests_per_second_limit": 8
+  },
+  "tron_api": {
+    "base_url": "https://api.trongrid.io",
+    "timeout_seconds": 15,
+    "max_retries": 3
+  },
+  "market_mapping": {
+    "protocol": "ALL",
+    "page_size": 50,
+    "max_pages": 5,
+    "include_blacklisted": false,
+    "token_batch_size": 50,
+    "quote_enabled": true,
+    "quote_amount_human": "1",
+    "max_quote_pairs": 10,
+    "quote_pairs": [
+      {
+        "from_token": "TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR",
+        "from_symbol": "WTRX",
+        "from_decimals": 6,
+        "to_token": "TR7NHqjeQxGTCi8q8ZY4pL8otSzgjLj6t",
+        "to_symbol": "USDT",
+        "to_decimals": 6
+      }
+    ]
+  },
+  "output": {
+    "json_path": "data/market_map.json",
+    "jsonl_path": "data/market_map.jsonl"
+  },
+  "verified_contracts": {
+    "sunswap_v2_factory": "TKWJdrQkqHisa1X8HUdHEfREvTzw4pMAaY",
+    "sunswap_v2_router": "TNJVzGqKBWkJxJB5XYSqGAwUTV15U24pPq",
+    "sunswap_v3_factory": "TThJt8zaJzJMhCEScH7zWKnp5buVZqys9x",
+    "sunswap_v3_router": "TQAvWQpT9H916GckwWDJNhYZvQMkuRL7PN",
+    "wtrx": "TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR",
+    "usdt": "TR7NHqjeQxGTCi8q8ZY4pL8otSzgjLj6t"
+  }
+}
