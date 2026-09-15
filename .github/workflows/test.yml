@@ -32,3 +32,12 @@ jobs:
 
       - name: Run Market Mapper
         run: python -m market_mapper.mapper
+
+      - name: Upload market map
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-map
+          path: |
+            data/market_map.json
+            data/market_map.jsonl
+          if-no-files-found: error
