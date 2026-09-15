@@ -28,16 +28,46 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest -q
+        run: |
+          pytest -q
+
+      - name: Prepare output directory
+        run: |
+          mkdir -p data
 
       - name: Run Market Mapper
-        run: python -m market_mapper.mapper
+        run: |
+          python -m market_mapper.mapper config/config.json
+
+      - name: Verify generated market map
+        run: |
+          echo "Current directory:"
+          pwd
+
+          echo "Repository files:"
+          find . -maxdepth 3 -type f | sort
+
+          echo "Checking Market Mapper outputs..."
+
+          if [ ! -f "data/market_map.json" ]; then
+            echo "ERROR: data/market_map.json was not generated."
+            exit 1
+          fi
+
+          if [ ! -f "data/market_map.jsonl" ]; then
+            echo "ERROR: data/market_map.jsonl was not generated."
+            exit 1
+          fi
+
+          echo "market_map.json:"
+          ls -lh data/market_map.json
+
+          echo "market_map.jsonl:"
+          ls -lh data/market_map.jsonl
 
       - name: Upload market map
         uses: actions/upload-artifact@v4
         with:
           name: market-map
-          path: |
-            data/market_map.json
-            data/market_map.jsonl
+          path: data/
           if-no-files-found: error
